@@ -1,0 +1,174 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.sf.tool</groupId>
+	<artifactId>script-invoke</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	
+
+    <!-- SpringBoot Parent -->
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.1.4.RELEASE</version>
+    </parent>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<java.version>1.8</java.version>
+		<oracle.version>12.2.0.1</oracle.version>
+		<jasypt.version>1.9.2</jasypt.version>
+	</properties>
+
+	<dependencies>
+	    <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+<!-- 		<dependency> -->
+<!-- 		    <groupId>org.springframework.boot</groupId> -->
+<!-- 		    <artifactId>spring-boot-starter-actuator</artifactId> -->
+<!-- 		</dependency> -->
+        <dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-webflux</artifactId>
+		</dependency>
+		<dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.kafka</groupId>
+            <artifactId>spring-kafka</artifactId>
+        </dependency>
+		
+		<dependency>
+            <groupId>com.jcraft</groupId>
+            <artifactId>jsch</artifactId>
+            <version>0.1.55</version>
+        </dependency>
+		<!-- Jasypt -->
+        <dependency>
+            <groupId>org.jasypt</groupId>
+            <artifactId>jasypt</artifactId>
+            <version>${jasypt.version}</version>
+        </dependency>
+        <dependency>
+          <groupId>org.apache.commons</groupId>
+          <artifactId>commons-lang3</artifactId>
+        </dependency>
+        
+        <!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.6</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-collections4 -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-collections4</artifactId>
+            <version>4.3</version>
+        </dependency>
+        
+        
+        <!-- https://mvnrepository.com/artifact/org.webjars/vue -->
+		<dependency>
+		    <groupId>org.webjars</groupId>
+		    <artifactId>vue</artifactId>
+		    <version>2.5.16</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.webjars/bootstrap -->
+		<dependency>
+		    <groupId>org.webjars</groupId>
+		    <artifactId>bootstrap</artifactId>
+		    <version>4.3.1</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.webjars/jquery -->
+		<dependency>
+		    <groupId>org.webjars</groupId>
+		    <artifactId>jquery</artifactId>
+		    <version>3.4.0</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.webjars/vue-resource -->
+		<dependency>
+		    <groupId>org.webjars</groupId>
+		    <artifactId>vue-resource</artifactId>
+		    <version>0.9.3</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.webjars.bower/vue-router -->
+		<dependency>
+		    <groupId>org.webjars.bower</groupId>
+		    <artifactId>vue-router</artifactId>
+		    <version>2.2.1</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.webjars.npm/http-vue-loader -->
+		<dependency>
+		    <groupId>org.webjars.npm</groupId>
+		    <artifactId>http-vue-loader</artifactId>
+		    <version>1.3.5</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.webjars/rxjs -->
+		<dependency>
+		    <groupId>org.webjars</groupId>
+		    <artifactId>rxjs</artifactId>
+		    <version>2.5.3</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.webjars/momentjs -->
+		<dependency>
+		    <groupId>org.webjars</groupId>
+		    <artifactId>momentjs</artifactId>
+		    <version>2.24.0</version>
+		</dependency>
+		
+		
+		
+        <dependency>
+            <groupId>com.oracle</groupId>
+            <artifactId>ojdbc8</artifactId>
+            <version>${oracle.version}</version>
+        </dependency>		
+        
+        <!-- Tomcat Embed -->
+<!--         <dependency> -->
+<!--             <groupId>org.springframework.boot</groupId> -->
+<!--             <artifactId>spring-boot-starter-tomcat</artifactId> -->
+<!--             <scope>provided</scope> -->
+<!--         </dependency> -->
+        <!-- JSTL -->
+<!--         <dependency> -->
+<!--             <groupId>javax.servlet</groupId> -->
+<!--             <artifactId>jstl</artifactId> -->
+<!--         </dependency> -->
+        <!-- To compile JSP files -->
+<!--         <dependency> -->
+<!--             <groupId>org.apache.tomcat.embed</groupId> -->
+<!--             <artifactId>tomcat-embed-jasper</artifactId> -->
+<!--             <scope>provided</scope> -->
+<!--         </dependency> -->
+        
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <optional>true</optional>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+	<build>
+	    <finalName>script-invoke-0.0.1-SNAPSHOT</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>

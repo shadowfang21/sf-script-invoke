@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="tw">
+<head>
+    <meta charset="UTF-8">
+    <title>EFAH TOOL</title>
+    
+    <link href="webjars/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <script src="webjars/jquery/3.4.0/jquery.min.js"></script>
+    <script src="webjars/vue/2.5.16/vue.min.js"></script>
+    <script src="webjars/vue-resource/0.9.3/vue-resource.min.js"></script>
+    <script src="webjars/vue-router/2.2.1/dist/vue-router.min.js"></script>
+    <script src="webjars/http-vue-loader/1.3.5/src/httpVueLoader.js"></script>
+    <script src="webjars/rxjs/2.5.3/rx.all.min.js"></script>
+    <script src="webjars/momentjs/2.24.0/min/moment-with-locales.min.js"></script>
+    
+<style>
+	.footer {
+	  position: fixed;
+	  left: 0;
+	  bottom: 0;
+	  width: 100%;
+	  background-color: #f5f5f5;
+	  text-align: center;
+	}
+	
+	#app {
+	    min-height:500px;
+	    padding-bottom:100px;
+	}
+	
+	.fade-enter-active, .fade-leave-active {
+	  transition: opacity .5s;
+	}
+	.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+	  opacity: 0;
+	}
+	.message-toast {
+	   position: fixed; top: 80px; right: 100px;
+	}
+	.max-width-500 {
+	   max-width:500px
+	}
+	.sf-toast {
+	   overflow: hidden;
+	    font-size: .875rem;
+	    background-color: rgba(255,255,255,.85);
+	    background-clip: padding-box;
+	    border: 1px solid rgba(0,0,0,.1);
+	    box-shadow: 0 0.25rem 0.75rem rgba(0,0,0,.1);
+	    -webkit-backdrop-filter: blur(10px);
+	    backdrop-filter: blur(10px);
+	    border-radius: .25rem;
+	}
+</style>    
+    
+</head>
+<body>
+    
+    <div class="container">
+      <hr>
+      <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+	          <h1>EFH Tool</h1>
+	          <p>支援Chrome或IE9.0以上</p>
+	          
+	          <div class="release-note d-none">
+	              <h4 data-toggle="collapse" data-target="#note-list" >
+	                  <span class="glyphicon glyphicon-play" aria-hidden="true"></span>
+	                  Release Note
+	              </h4>
+	              <div class="note-list collapse" id="note-list">
+	                  <div class="note">
+	                      <p></p>
+	                      <ol>
+	                      </ol>
+	                  </div>
+	              </div>
+	          </div>
+          </div>
+      </div>
+      
+   </div>
+            
+    <div id="app">
+        <div class="container">
+	        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+		      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+		        <ul class="navbar-nav mr-auto">
+		          <li class="nav-item">
+                    <router-link to="/day-end-signal" class="nav-link">Day-End-Signal</router-link>
+                  </li>
+		          <li class="nav-item">
+                    <router-link to="/script-invoke" class="nav-link">Script-Invoke</router-link>
+                  </li>
+                  <li class="nav-item">
+                    <router-link to="/txn-param" class="nav-link">Txn-Param</router-link>
+                  </li>
+                  <li class="nav-item">
+                    <router-link to="/txn-basic-info" class="nav-link">Txn-Basic-Info</router-link>
+                  </li>
+                  <li class="nav-item">
+                    <router-link to="/txn-info-error" class="nav-link">Txn-Info-Error</router-link>
+                  </li>
+                  <li class="nav-item">
+                    <router-link to="/send-kafka" class="nav-link">Send-Kafka</router-link>
+                  </li>
+                  <li class="nav-item">
+                    <router-link to="/upload-file" class="nav-link">Upload-File</router-link>
+                  </li>
+                  <li class="nav-item">
+                    <router-link to="/download-file" class="nav-link">Download-File</router-link>
+                  </li>
+                  <li class="nav-item">
+                    <router-link to="/sql-query" class="nav-link">Sql-Query</router-link>
+                  </li>
+                  <li class="nav-item">
+                    <router-link to="/acct-summary" class="nav-link">Acct-Summary</router-link>
+                  </li>
+		        </ul>
+		      </div>
+		    </nav>
+	    </div>
+	    <message-box></message-box>
+        
+        <hr>
+        <router-view></router-view>
+        
+    
+    </div>
+    
+    <hr>
+    <footer class="footer mt-auto py-3">
+	  <div class="container">
+	    <span class="text-muted">Place sticky footer content here.</span>
+	  </div>
+	</footer>
+</body>
+
+<script>
+    
+	const api_url = window.location.origin;
+    
+	const router = new VueRouter({
+	  routes : [
+          { path: '/foo', component: { template: '<div>foo</div>' } },
+          { path: '/bar', component: { template: '<div>bar</div>' } },
+          { path: '/day-end-signal', component: httpVueLoader('./day-end-signal.vue') },
+          { path: '/txn-param', component: httpVueLoader('./txn-param.vue') },
+          { path: '/oms-message', component: httpVueLoader('./oms-message.vue') },
+          { path: '/txn-basic-info', component: httpVueLoader('./txn-basic-info.vue') },
+          { path: '/send-kafka', component: httpVueLoader('./send-kafka.vue') },
+          { path: '/upload-file', component: httpVueLoader('./upload-file.vue') },
+          { path: '/download-file', component: httpVueLoader('./download-file.vue') },
+          { path: '/txn-info-error', component: httpVueLoader('./txn-info-error.vue') },
+          { path: '/sql-query', component: httpVueLoader('./sql-query.vue') },
+          { path: '/acct-summary', component: httpVueLoader('./acct-summary.vue') },
+          { path: '/script-invoke', component: httpVueLoader('./script-invoke.vue')}
+      ]
+	})
+    
+	function validate() {
+		if (!$("form")[0].checkValidity()) {
+            $("form")[0].reportValidity();
+            return false;
+        }
+		return true;
+	}
+	
+	Vue.component('custom-modal', {
+		data : function() {
+			return {
+				showModal : false,
+				title : 'title',
+				body : 'body',
+				textStyle : 'pre'
+			}
+		},
+		mounted : function() {
+			
+			var that = this;
+			
+			this.$root.$on("showModal", (msg) => {
+				that.showModal = true;
+				that.title = msg.title;
+				that.body = msg.body;
+            });
+			
+		},
+		methods : {
+			mouseClick : function(e) {
+				if ('modal fade' ==  e.target.className) {
+				    this.showModal = false;	
+				}
+			}
+		},
+		template : `
+		
+		<div v-if="showModal">
+		    <div class="modal fade"  style="display:initial;opacity:1;" aria-hidden="true" @click="mouseClick">
+	          <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-xl" role="document" style="margin-top:70px">
+	            <div class="modal-content">
+	              <div class="modal-header">
+	                <h5 class="modal-title">{{title}}</h5>
+	                <div class="ml-5">
+	                    <span class="mr-1">Show style : </span>
+		                <div class="form-check form-check-inline">
+		                <input class="form-check-input" type="radio" value="pre" name="textStyle" v-model="textStyle" id="pre">
+		                <label class="form-check-label" for="pre">pre</label>
+		                </div>
+		                <div class="form-check form-check-inline">
+		                <input class="form-check-input" type="radio" value="p" name="textStyle" v-model="textStyle" id="p">
+		                <label class="form-check-label" for="p">p</label>
+		                </div>
+	                </div>
+	                <button type="button" class="close" @click="showModal=false">
+	                  <span aria-hidden="true">&times;</span>
+	                </button>
+	              </div>
+	              <div class="modal-body">
+	                <pre v-if="textStyle=='pre'" style="overflow:unset"><code>{{body}}</code></pre>
+	                <p v-else><code>{{body}}</code></p>
+	              </div>
+	            </div>
+	          </div>
+	        </div>
+	        <div class="modal-backdrop fade show"></div>
+		</div>
+		
+		`
+	});
+	
+	Vue.component('message-box', {
+	    data : function() {
+	    	return {
+	    		items : [],
+	    		subscription : [],
+	    		subject : new Rx.Subject()
+	    	}
+	    },
+	    mounted : function() {
+	    	
+	    	var that = this;
+	    	
+	    	this.$root.$on("pushMessage", (msg) => {
+	    		that.subject.onNext(msg);
+	    	});
+	    	
+	    	this.subscription[0] = this.subject.asObservable().subscribe(
+   		      message => {
+   		        if (message) {
+   		          that.items.push(message);
+   		        } else {
+   		          that.items.shift();
+   		        }
+   		    });
+
+	    	 this.subscription[1] = this.subject.asObservable().delay(5000).subscribe(
+	    		 message => {
+	    		    that.items.shift();
+	    		 }
+	         );
+	    },
+	    methods : {
+	    	putMessage : function() {
+	    		this.$root.$emit('pushMessage', 'fdsafdsa');
+	    	}
+	    },
+	    template : `
+	    
+	    <div id="demo">
+	      <div v-show="false">
+	    	<button v-on:click="putMessage()">
+	    	   Toggle
+	        </button>
+	      </div>
+	      <div class="message-toast">
+	          <transition-group name="fade" tag="div">
+		          <div class="sf-toast max-width-500" v-for="msg in items" v-bind:key="msg">
+			        <div class="toast-body">
+			          <h4 class="text-info">{{msg}}</h4>
+			        </div>
+			      </div>
+		      </transition-group>
+	      </div>
+	    </div>
+	    `
+	});
+	
+    var app = new Vue({
+      router: router,
+      el: '#app',
+    })
+
+    </script>
+</html>
